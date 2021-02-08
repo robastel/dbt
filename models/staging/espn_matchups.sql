@@ -7,7 +7,7 @@ WITH all_matchups AS
         , es.regular_season_weeks
         , es.playoff_rounds
         , em.team_id AS roster_id
-        , em.points
+        , ROUND(em.points, 2) AS points
         , em.opponent_id AS opponent_roster_id
         , SUM(CASE WHEN em.week > regular_season_weeks AND em.margin_of_victory < 0 AND et.standing <= es.playoff_team_count THEN 1 ELSE 0 END)
             OVER(

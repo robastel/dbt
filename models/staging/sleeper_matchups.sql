@@ -6,7 +6,7 @@ WITH all_matchups AS
         , sm.week
         , ss.regular_season_weeks
         , sm.roster_id
-        , sm.points
+        , ROUND(sm.points, 2) AS points
         , o.roster_id AS opponent_roster_id
     FROM
         {{ source('sleeper', 'matchups') }} AS sm
@@ -42,5 +42,6 @@ WHERE
             sls.season_id = am.season_id
             AND am.roster_id in (sls.roster_id_a, sls.roster_id_b)
             AND sls.bracket_round = am.week - am.regular_season_weeks
+            -- The only losers bracket game we care about is the 3rd place game
             AND COALESCE(sls.winner_place, 0) <= 3
     )
