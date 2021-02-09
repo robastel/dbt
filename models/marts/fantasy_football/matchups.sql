@@ -17,6 +17,9 @@ SELECT
     , CASE WHEN ROUND(am.points - opp.points, 2) > 0 THEN 1 ELSE 0 END win
     , CASE WHEN ROUND(am.points - opp.points, 2) < 0 THEN 1 ELSE 0 END loss
     , CASE WHEN ROUND(am.points - opp.points, 2) = 0 THEN 1 ELSE 0 END tie
+    , am.is_regular_season_matchup
+    , am.is_playoff_matchup
+    , am.matchup_type
 FROM
     all_matchups am
 JOIN

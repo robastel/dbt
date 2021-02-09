@@ -5,20 +5,23 @@ WITH all_matchups AS
         , ss.season_id
         , sm.week
         , ss.regular_season_weeks
+        , ss.playoff_rounds
+        , ss.regular_season_weeks + ss.playoff_rounds AS total_weeks
         , sm.roster_id
         , ROUND(sm.points, 2) AS points
-        , o.roster_id AS opponent_roster_id
+        , opp.roster_id AS opponent_roster_id
     FROM
         {{ source('sleeper', 'matchups') }} AS sm
     JOIN 
         {{ ref('sleeper_seasons')}} AS ss
         ON sm.season_id = ss.season_id
     JOIN 
-        {{ source('sleeper', 'matchups') }} AS o
-        ON sm.season_id = o.season_id
-        AND sm.week = o.week
-        AND sm.matchup_id = o.matchup_id
-        AND sm.roster_id <> o.roster_id
+        {{ source('sleeper', 'matchups') }} AS opp
+        ON sm.season_id = opp.season_id
+        AND sm.week = opp.week
+        AND sm.matchup_id = opp.matchup_id
+        AND sm.roster_id <> opp.roster_id
+        AND opp.roster_id IS NOT NULL
 )
 
 SELECT
@@ -28,20 +31,24 @@ SELECT
     , am.roster_id
     , am.points
     , am.opponent_roster_id
+    , CASE WHEN am.week <= am.regular_season_weeks THEN 1 ELSE 0 END AS is_regular_season_matchup
+    , CASE WHEN am.week > am.regular_season_weeks THEN 1 ELSE 0 END AS is_playoff_matchup
+    , CASE
+        WHEN am.week <= am.regular_season_weeks THEN 'regular_season'
+        WHEN slp.winner_place = 1 THEN 'championship'
+        WHEN slp.winner_place = 3 THEN 'third_place'
+        WHEN am.week = am.total_weeks - 1 THEN 'semifinal'
+        WHEN am.week = am.total_weeks - 2 THEN 'quarterfinal'
+        ELSE 'earlier_playoff_rounds'
+      END AS matchup_type
 FROM
     all_matchups am
+LEFT JOIN
+    {{ source('sleeper', 'lookup_playoffs') }} slp
+    ON am.season_id = slp.season_id
+    AND am.roster_id in (slp.roster_id_a, slp.roster_id_b)
+    AND slp.bracket_round = am.week - am.regular_season_weeks
+    -- The only losers bracket game we care about is the 3rd place game
+    AND COALESCE(slp.winner_place, 0) <= 3
 WHERE
-    am.week <= am.regular_season_weeks
-    OR EXISTS
-    (
-        SELECT
-            1
-        FROM
-            {{ source('sleeper', 'lookup_playoffs') }} sls
-        WHERE
-            sls.season_id = am.season_id
-            AND am.roster_id in (sls.roster_id_a, sls.roster_id_b)
-            AND sls.bracket_round = am.week - am.regular_season_weeks
-            -- The only losers bracket game we care about is the 3rd place game
-            AND COALESCE(sls.winner_place, 0) <= 3
-    )
+    (am.week <= am.regular_season_weeks OR slp.season_id IS NOT NULL)
