@@ -49,14 +49,25 @@ SELECT
     , amlpl.opponent_roster_id
     , CASE WHEN amlpl.week <= amlpl.regular_season_weeks THEN 1 ELSE 0 END AS is_regular_season_matchup
     , CASE WHEN amlpl.week > amlpl.regular_season_weeks THEN 1 ELSE 0 END AS is_playoff_matchup
-    , CASE
-        WHEN amlpl.week <= amlpl.regular_season_weeks THEN 'regular_season'
-        WHEN amlpl.lag_playoff_losses = 0 AND amlpl.week = amlpl.total_weeks THEN 'championship'
-        WHEN amlpl.lag_playoff_losses = 1 AND amlpl.second_lag_playoff_losses = 0 AND amlpl.week = amlpl.total_weeks THEN 'third_place'
-        WHEN amlpl.lag_playoff_losses = 0 AND amlpl.week = amlpl.total_weeks - 1 THEN 'semifinal'
-        WHEN amlpl.lag_playoff_losses = 0 AND amlpl.week = amlpl.total_weeks - 2 THEN 'quarterfinal'
-        ELSE 'earlier_playoff_rounds'
-      END AS matchup_type
+    , CASE 
+        WHEN amlpl.lag_playoff_losses = 1 
+            AND amlpl.second_lag_playoff_losses = 0 
+            AND amlpl.week = amlpl.total_weeks 
+            THEN 1 ELSE 0
+      END AS is_third_place_matchup
+    , CASE 
+        WHEN amlpl.lag_playoff_losses = 0 
+            AND amlpl.week = amlpl.total_weeks 
+            THEN 1 ELSE 0 
+      END AS is_first_place_matchup
+    -- , CASE
+    --     WHEN amlpl.week <= amlpl.regular_season_weeks THEN 'regular_season'
+    --     WHEN amlpl.lag_playoff_losses = 0 AND amlpl.week = amlpl.total_weeks THEN 'championship'
+    --     WHEN amlpl.lag_playoff_losses = 1 AND amlpl.second_lag_playoff_losses = 0 AND amlpl.week = amlpl.total_weeks THEN 'third_place'
+    --     WHEN amlpl.lag_playoff_losses = 0 AND amlpl.week = amlpl.total_weeks - 1 THEN 'semifinal'
+    --     WHEN amlpl.lag_playoff_losses = 0 AND amlpl.week = amlpl.total_weeks - 2 THEN 'quarterfinal'
+    --     ELSE 'earlier_playoff_rounds'
+    --   END AS matchup_type
 FROM
     all_matchups_lag_playoff_losses amlpl
 WHERE

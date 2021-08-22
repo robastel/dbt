@@ -11,5 +11,7 @@ models:
     marts:
       fantasy_football:
         materialized: table
+        intermediate:
+          materialized: ephemeral
     staging:
       materialized: ephemeral
