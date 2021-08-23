@@ -15,3 +15,9 @@ models:
           materialized: ephemeral
     staging:
       materialized: ephemeral
+
+seeds:
+  robboli_broc:
+    lookup_matchup_corrections:
+      +column_types:
+        season_id: STRING

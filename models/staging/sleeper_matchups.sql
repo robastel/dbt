@@ -29,7 +29,7 @@ SELECT
     , am.season_id
     , am.week
     , am.roster_id
-    , am.points
+    , COALESCE(lmc.points, am.points) AS points
     , am.opponent_roster_id
     , CASE WHEN am.week <= am.regular_season_weeks THEN 1 ELSE 0 END AS is_regular_season_matchup
     , CASE WHEN am.week > am.regular_season_weeks THEN 1 ELSE 0 END AS is_playoff_matchup
@@ -44,13 +44,19 @@ SELECT
     --     ELSE 'earlier_playoff_rounds'
     --   END AS matchup_type
 FROM
-    all_matchups am
+    all_matchups AS am
 LEFT JOIN
-    {{ source('sleeper', 'lookup_playoffs') }} slp
+    {{ source('sleeper', 'lookup_playoffs') }} AS slp
     ON am.season_id = slp.season_id
     AND am.roster_id in (slp.roster_id_a, slp.roster_id_b)
     AND slp.bracket_round = am.week - am.regular_season_weeks
     -- The only losers bracket game we care about is the 3rd place game
     AND COALESCE(slp.winner_place, 0) <= 3
+LEFT JOIN
+    {{ ref('lookup_matchup_corrections') }} AS lmc
+    ON am.league_name = lmc.league_name
+    AND am.season_id = lmc.season_id
+    AND am.week = lmc.week
+    AND am.roster_id = lmc.roster_id
 WHERE
     (am.week <= am.regular_season_weeks OR slp.season_id IS NOT NULL)
