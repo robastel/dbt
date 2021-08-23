@@ -1,0 +1,23 @@
+name: robboli_broc
+version: 1.0.0
+config-version: 2
+
+clean-targets:
+  - "target"
+  - "dbt_modules"
+
+models:
+  robboli_broc:
+    marts:
+      fantasy_football:
+        materialized: table
+        intermediate:
+          materialized: ephemeral
+    staging:
+      materialized: ephemeral
+
+seeds:
+  robboli_broc:
+    lookup_matchup_corrections:
+      +column_types:
+        season_id: STRING

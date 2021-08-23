@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: espn
+    schema: fantasy_football_landing
+    tables:
+      - name: draft_picks
+        identifier: espn_draft_picks
+      - name: matchups
+        identifier: espn_matchups
+      - name: seasons
+        identifier: espn_seasons
+      - name: teams
+        identifier: espn_teams
+  - name: sleeper
+    schema: fantasy_football_landing
+    tables:
+      - name: draft_picks
+        identifier: sleeper_draft_picks
+      - name: lookup_playoffs
+        identifier: sleeper_lookup_playoffs
+      - name: matchups
+        identifier: sleeper_matchups
+      - name: rosters
+        identifier: sleeper_rosters
+      - name: seasons
+        identifier: sleeper_seasons
+      - name: user_seasons
+        identifier: sleeper_user_seasons
