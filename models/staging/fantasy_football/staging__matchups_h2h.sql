@@ -1,4 +1,9 @@
-{{ config(materialized='ephemeral') }}
+WITH matchups_h2h AS
+(
+    SELECT * FROM {{ ref('staging__espn_matchups') }}
+    UNION ALL
+    SELECT * FROM {{ ref('staging__sleeper_matchups') }}
+)
 
 SELECT
     m.league_name
@@ -14,9 +19,9 @@ SELECT
     , m.is_third_place_matchup
     , m.is_first_place_matchup
 FROM
-    {{ ref('matchups_h2h_raw') }} AS m
+    matchups_h2h AS m
 JOIN
-    {{ ref('matchups_h2h_raw') }} AS opp
+    matchups_h2h AS opp
     ON m.opponent_roster_id = opp.roster_id
     AND m.week = opp.week
     AND m.season_id = opp.season_id

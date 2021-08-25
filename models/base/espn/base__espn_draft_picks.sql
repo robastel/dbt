@@ -1,7 +1,8 @@
 SELECT
-    season_id
-    , season_id AS draft_id
-    , team_id AS roster_id
+    'espn' AS platform
+    , season_id AS platform_season_id
+    , season_id AS platform_draft_id
+    , team_id AS platform_team_id
     , round_num
     , round_pick AS round_pick_num
     , NULL AS draft_slot_num

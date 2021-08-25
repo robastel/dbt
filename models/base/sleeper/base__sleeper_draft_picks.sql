@@ -1,7 +1,8 @@
 SELECT
-    season_id
-    , draft_id
-    , roster_id
+    'sleeper' AS platform
+    , season_id AS platform_season_id
+    , draft_id AS platform_draft_id
+    , roster_id AS platform_team_id
     , round_num
     , NULL AS round_pick_num
     , draft_slot AS draft_slot_num
