@@ -18,11 +18,14 @@ WITH matchups_with_key AS
         , m.platform
         , ss.season_id
         , st.team_id
+        , st.manager_id
+        , st.manager_initials
         , m.week
         , ss.league_name
         , m.points
         , m.platform_season_id
         , m.platform_team_id
+        , st.platform_manager_id
         , opp.platform_team_id AS platform_opponent_team_id
         , ss.regular_season_weeks
         , ss.playoff_rounds
@@ -45,28 +48,19 @@ WITH matchups_with_key AS
         AND m.platform_team_id = st.platform_team_id
 )
 
-    ml.matchup_id
-    , ml.platform
-    , ml.season_id
-    , ml.team_id
-    , ml.week
-    , ml.league_name
-    , ml.points
-    , ml.platform_season_id
-    , ml.platform_team_id
-    , ml.platform_opponent_team_id
-
-
 SELECT
     mwo.matchup_id
     , mwo.platform
     , mwo.season_id
     , mwo.team_id
+    , mwo.manager_id
+    , mwo.manager_initials
     , mwo.week
     , mwo.league_name
     , COALESCE(lmc.points, mwo.points) AS points
     , mwo.platform_season_id
     , mwo.platform_team_id
+    , mwo.platform_manager_id
     , mwo.platform_opponent_team_id
     , CASE WHEN mwo.week <= mwo.regular_season_weeks THEN 1 ELSE 0 END AS is_regular_season_matchup
     , CASE WHEN mwo.week > mwo.regular_season_weeks THEN 1 ELSE 0 END AS is_playoff_matchup
@@ -82,7 +76,7 @@ LEFT JOIN
     -- The only losers bracket game we care about is the 3rd place game
     AND COALESCE(slp.winner_place, 0) <= 3
 LEFT JOIN
-    {{ ref('lookup_matchup_corrections') }} AS lmc
+    {{ ref('lookup__matchup_corrections') }} AS lmc
     ON mwo.league_name = lmc.league_name
     AND mwo.platform_season_id = lmc.platform_season_id
     AND mwo.week = lmc.week

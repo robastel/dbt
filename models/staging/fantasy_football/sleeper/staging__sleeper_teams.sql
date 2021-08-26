@@ -24,13 +24,13 @@ SELECT
 FROM
     teams_with_key AS t
 JOIN
-    {{ ref('sleeper_seasons') }} ss
+    {{ ref('staging__sleeper_seasons') }} ss
     on t.platform_season_id = ss.platform_season_id
 JOIN
-    {{ source('sleeper', 'rosters') }} sr
+    {{ ref('base__sleeper_rosters') }} sr
     ON ss.platform_season_id = sr.platform_season_id
 JOIN
-    {{ ref('lookup_managers') }} lm
+    {{ ref('lookup__managers') }} lm
     ON sr.user_id = CAST(lm.platform_manager_id AS STRING)
     AND ss.league_name = lm.league_name
     AND lm.platform = 'sleeper'

@@ -21,7 +21,7 @@ WITH matchup_counts AS
         , SUM(m.is_first_place_matchup * m.loss) AS second_place_count
         , SUM(m.is_third_place_matchup * m.win) AS third_place_count
     FROM
-        {{ ref('matchups') }} AS m
+        {{ ref('staging__matchups') }} AS m
     {{ dbt_utils.group_by(3) }}
 )
 

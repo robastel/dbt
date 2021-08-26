@@ -8,13 +8,13 @@ clean-targets:
 
 models:
   robboli_broc:
+    base:
+      materialized: ephemeral
+    staging:
+      materialized: table
     marts:
       fantasy_football:
         materialized: table
-        intermediate:
-          materialized: ephemeral
-    staging:
-      materialized: ephemeral
 
 seeds:
   robboli_broc:

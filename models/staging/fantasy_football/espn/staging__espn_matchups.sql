@@ -18,11 +18,14 @@ matchups_with_season_and_team AS
         , m.platform
         , es.season_id
         , et.team_id
+        , et.manager_id
+        , et.manager_initials
         , m.week
         , es.league_name
         , m.points
         , m.platform_season_id
         , m.platform_team_id
+        , et.platform_manager_id
         , m.platform_opponent_team_id
         , es.regular_season_weeks
         , es.playoff_rounds
@@ -80,11 +83,14 @@ SELECT
     , ml.platform
     , ml.season_id
     , ml.team_id
+    , ml.manager_id
+    , ml.manager_initials
     , ml.week
     , ml.league_name
     , ml.points
     , ml.platform_season_id
     , ml.platform_team_id
+    , ml.platform_manager_id
     , ml.platform_opponent_team_id
     , CASE 
         WHEN ml.week <= ml.regular_season_weeks 

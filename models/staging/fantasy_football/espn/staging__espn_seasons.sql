@@ -10,5 +10,5 @@ SELECT
 FROM
     {{ ref('base__espn_seasons') }} AS es
 LEFT JOIN
-    {{ ref('lookup_playoff_structure')}} AS lps
+    {{ ref('lookup__playoff_structure')}} AS lps
     ON es.playoff_team_count = lps.teams

@@ -10,5 +10,5 @@ SELECT
 FROM
     {{ ref('base__sleeper_seasons') }} AS ss
 LEFT JOIN
-    {{ ref('lookup_playoff_structure')}} AS lps
+    {{ ref('lookup__playoff_structure')}} AS lps
     ON ss.playoff_team_count = lps.teams
