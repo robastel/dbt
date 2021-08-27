@@ -11,7 +11,7 @@ WITH matchups_with_key AS
         {{ ref('base__espn_matchups') }}
 )
 
-matchups_with_season_and_team AS
+, matchups_with_season_and_team AS
 (
     SELECT 
         m.matchup_id
@@ -32,9 +32,9 @@ matchups_with_season_and_team AS
         , es.total_weeks
         , SUM(
             CASE 
-                WHEN em.week > es.regular_season_weeks 
-                    AND em.point_differential < 0 
-                    AND et.standing <= es.playoff_team_count 
+                WHEN m.week > es.regular_season_weeks 
+                    AND m.point_differential < 0 
+                    AND et.regular_season_standing <= es.playoff_team_count 
                     THEN 1 ELSE 0 
             END
             )
@@ -47,7 +47,7 @@ matchups_with_season_and_team AS
         matchups_with_key AS m
     JOIN 
         {{ ref('staging__espn_seasons')}} AS es
-        ON m.platform_season_id = ss.platform_season_id
+        ON m.platform_season_id = es.platform_season_id
     JOIN
         {{ ref('staging__espn_teams') }} AS et
         ON m.platform_season_id = et.platform_season_id
@@ -56,10 +56,10 @@ matchups_with_season_and_team AS
         (
             m.week <= es.regular_season_weeks 
             OR 
-            m.standing <= es.playoff_team_count
+            et.regular_season_standing <= es.playoff_team_count
         )
-        AND m.platform_team_id <> m.opponent_platform_team_id
-        AND m.opponent_platform_team_id IS NOT NULL
+        AND m.platform_team_id <> m.platform_opponent_team_id
+        AND m.platform_opponent_team_id IS NOT NULL
 )
 
 , matchups_lag_playoff_losses AS

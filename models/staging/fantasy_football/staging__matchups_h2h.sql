@@ -1,4 +1,4 @@
-WITH matchups_h2h AS
+WITH unioned_matchups_h2h AS
 (
     SELECT * FROM {{ ref('staging__espn_matchups') }}
     UNION ALL
@@ -27,12 +27,12 @@ WITH matchups_h2h AS
         , m.is_first_place_matchup
         , m.platform_season_id
         , m.platform_team_id
-        , m.plaform_manager_id
+        , m.platform_manager_id
         , m.platform_opponent_team_id
     FROM
-        matchups_h2h AS m
+        unioned_matchups_h2h AS m
     JOIN
-        matchups_h2h AS opp
+        unioned_matchups_h2h AS opp
         ON m.season_id = opp.season_id
         AND m.week = opp.week
         AND m.platform_opponent_team_id = opp.platform_team_id

@@ -21,7 +21,7 @@ SELECT
     , lm.manager_id
     , lm.platform_manager_id
     , lm.manager_initials
-    , t.standing
+    , t.regular_season_standing
 FROM
     teams_with_key AS t
 JOIN

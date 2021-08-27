@@ -18,6 +18,6 @@ models:
 
 seeds:
   robboli_broc:
-    lookup_matchup_corrections:
+    lookup__matchup_corrections:
       +column_types:
-        season_id: STRING
+        platform_season_id: STRING
