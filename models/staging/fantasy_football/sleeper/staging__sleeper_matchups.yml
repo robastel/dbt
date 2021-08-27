@@ -1,0 +1,44 @@
+version: 2
+models:
+- name: staging__sleeper_matchups
+  description: ''
+  columns:
+  - name: matchup_id
+    description: ''
+    tests:
+    - unique
+    - not_null
+  - name: platform
+    description: ''
+  - name: season_id
+    description: ''
+  - name: team_id
+    description: ''
+  - name: manager_id
+    description: ''
+  - name: manager_initials
+    description: ''
+  - name: year
+    description: ''
+  - name: week
+    description: ''
+  - name: league_name
+    description: ''
+  - name: points
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: platform_team_id
+    description: ''
+  - name: platform_manager_id
+    description: ''
+  - name: platform_opponent_team_id
+    description: ''
+  - name: is_regular_season_matchup
+    description: ''
+  - name: is_playoff_matchup
+    description: ''
+  - name: is_third_place_matchup
+    description: ''
+  - name: is_first_place_matchup
+    description: ''

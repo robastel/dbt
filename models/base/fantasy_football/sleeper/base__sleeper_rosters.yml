@@ -1,0 +1,13 @@
+version: 2
+models:
+- name: base__sleeper_rosters
+  description: ''
+  columns:
+  - name: platform
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: platform_team_id
+    description: ''
+  - name: user_id
+    description: ''

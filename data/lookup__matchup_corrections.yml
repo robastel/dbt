@@ -1,0 +1,9 @@
+version: 2
+seeds:
+- name: lookup__matchup_corrections
+  description: ''
+  columns:
+  - name: matchup_id
+    description: ''
+  - name: points
+    description: ''

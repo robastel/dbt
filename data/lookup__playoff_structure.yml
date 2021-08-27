@@ -1,0 +1,11 @@
+version: 2
+seeds:
+- name: lookup__playoff_structure
+  description: ''
+  columns:
+  - name: teams
+    description: ''
+  - name: rounds
+    description: ''
+  - name: byes
+    description: ''

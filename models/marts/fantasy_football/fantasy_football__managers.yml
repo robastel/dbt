@@ -1,0 +1,54 @@
+version: 2
+models:
+- name: fantasy_football__managers
+  description: ''
+  columns:
+  - name: manager_id
+    description: ''
+    tests:
+    - unique
+    - not_null
+  - name: manager_initials
+    description: ''
+  - name: league_name
+    description: ''
+  - name: season_count
+    description: ''
+  - name: made_playoffs_count
+    description: ''
+  - name: matchup_count
+    description: ''
+  - name: win_count
+    description: ''
+  - name: loss_count
+    description: ''
+  - name: tie_count
+    description: ''
+  - name: regular_season_matchup_count
+    description: ''
+  - name: regular_season_win_count
+    description: ''
+  - name: regular_season_loss_count
+    description: ''
+  - name: regular_season_tie_count
+    description: ''
+  - name: playoff_matchup_count
+    description: ''
+  - name: playoff_win_count
+    description: ''
+  - name: playoff_loss_count
+    description: ''
+  - name: first_place_count
+    description: ''
+  - name: second_place_count
+    description: ''
+  - name: third_place_count
+    description: ''
+  - name: win_rate
+    description: ''
+  - name: regular_season_win_rate
+    description: ''
+  - name: playoff_win_rate
+    description: ''
+  - name: made_playoffs_rate
+    description: ''

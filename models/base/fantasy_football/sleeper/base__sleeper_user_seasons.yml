@@ -1,0 +1,11 @@
+version: 2
+models:
+- name: base__sleeper_user_seasons
+  description: ''
+  columns:
+  - name: platform
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: user_id
+    description: ''

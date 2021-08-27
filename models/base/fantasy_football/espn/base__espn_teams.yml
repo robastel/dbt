@@ -1,0 +1,13 @@
+version: 2
+models:
+- name: base__espn_teams
+  description: ''
+  columns:
+  - name: platform
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: platform_team_id
+    description: ''
+  - name: regular_season_standing
+    description: ''

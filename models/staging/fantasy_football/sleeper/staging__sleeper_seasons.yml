@@ -1,0 +1,32 @@
+version: 2
+models:
+- name: staging__sleeper_seasons
+  description: ''
+  columns:
+  - name: season_id
+    description: ''
+    tests:
+    - unique
+    - not_null
+  - name: platform
+    description: ''
+  - name: league_name
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: year
+    description: ''
+  - name: start_week
+    description: ''
+  - name: regular_season_weeks
+    description: ''
+  - name: last_completed_week
+    description: ''
+  - name: has_matchup_against_median
+    description: ''
+  - name: playoff_team_count
+    description: ''
+  - name: playoff_rounds
+    description: ''
+  - name: total_weeks
+    description: ''
