@@ -1,0 +1,15 @@
+version: 2
+seeds:
+- name: lookup__managers
+  description: ''
+  columns:
+  - name: league_name
+    description: ''
+  - name: platform
+    description: ''
+  - name: platform_manager_id
+    description: ''
+  - name: manager_id
+    description: ''
+  - name: manager_initials
+    description: ''

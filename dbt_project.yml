@@ -1,10 +1,11 @@
 name: robboli_broc
 version: 1.0.0
 config-version: 2
+profile: default
 
 clean-targets:
-  - "target"
-  - "dbt_modules"
+  - target
+  - dbt_modules
 
 models:
   robboli_broc:
@@ -20,4 +21,4 @@ seeds:
   robboli_broc:
     lookup__matchup_corrections:
       +column_types:
-        platform_season_id: STRING
+        matchup_id: STRING

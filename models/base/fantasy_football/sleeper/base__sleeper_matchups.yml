@@ -1,0 +1,17 @@
+version: 2
+models:
+- name: base__sleeper_matchups
+  description: ''
+  columns:
+  - name: platform
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: week
+    description: ''
+  - name: platform_matchup_id
+    description: ''
+  - name: platform_team_id
+    description: ''
+  - name: points
+    description: ''

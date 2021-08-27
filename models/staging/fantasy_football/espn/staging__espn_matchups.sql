@@ -20,6 +20,7 @@ WITH matchups_with_key AS
         , et.team_id
         , et.manager_id
         , et.manager_initials
+        , es.year
         , m.week
         , es.league_name
         , m.points
@@ -85,6 +86,7 @@ SELECT
     , ml.team_id
     , ml.manager_id
     , ml.manager_initials
+    , ml.year
     , ml.week
     , ml.league_name
     , ml.points

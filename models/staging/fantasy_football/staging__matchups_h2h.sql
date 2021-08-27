@@ -14,6 +14,7 @@ WITH unioned_matchups_h2h AS
         , m.team_id
         , m.manager_id
         , m.manager_initials
+        , m.year
         , m.week
         , m.league_name
         , m.points
@@ -45,6 +46,7 @@ SELECT
     , team_id
     , manager_id
     , manager_initials
+    , year
     , week
     , league_name
     , points

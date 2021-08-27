@@ -1,0 +1,17 @@
+version: 2
+models:
+- name: base__sleeper_lookup_playoffs
+  description: ''
+  columns:
+  - name: platform
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: bracket_round
+    description: ''
+  - name: winner_place
+    description: ''
+  - name: platform_team_id_a
+    description: ''
+  - name: platform_team_id_b
+    description: ''

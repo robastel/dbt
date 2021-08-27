@@ -1,9 +1,9 @@
 WITH matchup_counts AS
 (
     SELECT
-        m.league_name
-        , m.manager_id
+        m.manager_id
         , m.manager_initials
+        , m.league_name
         , COUNT(DISTINCT m.season_id) AS season_count
         , COALESCE(COUNT(DISTINCT CASE WHEN m.is_playoff_matchup = 1 THEN m.season_id END), 0) AS made_playoffs_count
         , COUNT(1) AS matchup_count
@@ -21,7 +21,7 @@ WITH matchup_counts AS
         , SUM(m.is_first_place_matchup * m.loss) AS second_place_count
         , SUM(m.is_third_place_matchup * m.win) AS third_place_count
     FROM
-        {{ ref('staging__matchups') }} AS m
+        {{ ref('fantasy_football__matchups') }} AS m
     {{ dbt_utils.group_by(3) }}
 )
 

@@ -20,6 +20,7 @@ WITH matchups_with_key AS
         , st.team_id
         , st.manager_id
         , st.manager_initials
+        , ss.year
         , m.week
         , ss.league_name
         , m.points
@@ -55,6 +56,7 @@ SELECT
     , mwo.team_id
     , mwo.manager_id
     , mwo.manager_initials
+    , mwo.year
     , mwo.week
     , mwo.league_name
     , COALESCE(lmc.points, mwo.points) AS points
@@ -77,9 +79,6 @@ LEFT JOIN
     AND COALESCE(slp.winner_place, 0) <= 3
 LEFT JOIN
     {{ ref('lookup__matchup_corrections') }} AS lmc
-    ON mwo.league_name = lmc.league_name
-    AND mwo.platform_season_id = lmc.platform_season_id
-    AND mwo.week = lmc.week
-    AND mwo.platform_team_id = lmc.platform_team_id
+    ON mwo.matchup_id = lmc.matchup_id
 WHERE
     (mwo.week <= mwo.regular_season_weeks OR slp.platform_season_id IS NOT NULL)

@@ -1,0 +1,28 @@
+version: 2
+models:
+- name: staging__espn_teams
+  description: ''
+  columns:
+  - name: team_id
+    description: ''
+    tests:
+    - unique
+    - not_null
+  - name: platform
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: platform_team_id
+    description: ''
+  - name: season_id
+    description: ''
+  - name: league_name
+    description: ''
+  - name: manager_id
+    description: ''
+  - name: platform_manager_id
+    description: ''
+  - name: manager_initials
+    description: ''
+  - name: regular_season_standing
+    description: ''

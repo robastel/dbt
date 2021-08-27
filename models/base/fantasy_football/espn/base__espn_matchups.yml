@@ -1,0 +1,19 @@
+version: 2
+models:
+- name: base__espn_matchups
+  description: ''
+  columns:
+  - name: platform
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: platform_team_id
+    description: ''
+  - name: week
+    description: ''
+  - name: points
+    description: ''
+  - name: platform_opponent_team_id
+    description: ''
+  - name: point_differential
+    description: ''

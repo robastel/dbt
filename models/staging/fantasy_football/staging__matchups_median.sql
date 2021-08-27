@@ -1,12 +1,13 @@
 WITH matchups_with_median AS
 (
     SELECT
-        h2h.matchup_id
+        'median_' || h2h.matchup_id AS matchup_id
         , h2h.platform
         , h2h.season_id
         , h2h.team_id
         , h2h.manager_id
         , h2h.manager_initials
+        , h2h.year
         , h2h.week
         , h2h.league_name
         , h2h.points
@@ -27,7 +28,7 @@ WITH matchups_with_median AS
         , h2h.platform_manager_id
         , h2h.platform_opponent_team_id
     FROM
-        {{ ref('staging__matchups_h2h') }} h2h
+        {{ ref('staging__matchups_h2h') }} AS h2h
     JOIN
         {{ ref('staging__seasons') }} AS s 
         ON h2h.season_id = s.season_id
@@ -52,6 +53,7 @@ SELECT
     , team_id
     , manager_id
     , manager_initials
+    , year
     , week
     , league_name
     , points

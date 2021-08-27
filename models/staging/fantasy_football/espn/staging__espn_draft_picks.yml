@@ -1,0 +1,35 @@
+version: 2
+models:
+- name: staging__espn_draft_picks
+  description: ''
+  columns:
+  - name: draft_id
+    description: ''
+  - name: platform
+    description: ''
+  - name: platform_season_id
+    description: ''
+  - name: platform_draft_id
+    description: ''
+  - name: platform_team_id
+    description: ''
+  - name: round_num
+    description: ''
+  - name: round_pick_num
+    description: ''
+  - name: draft_slot_num
+    description: ''
+  - name: overall_pick_num
+    description: ''
+  - name: player_id
+    description: ''
+  - name: player_name
+    description: ''
+  - name: player_position
+    description: ''
+  - name: player_team
+    description: ''
+  - name: player_years_experience
+    description: ''
+  - name: is_keeper
+    description: ''
