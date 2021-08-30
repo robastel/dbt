@@ -3,6 +3,11 @@ models:
 - name: staging__sleeper_draft_picks
   description: ''
   columns:
+  - name: draft_pick_id
+    description: ''
+    tests:
+    - unique
+    - not_null
   - name: draft_id
     description: ''
   - name: platform
