@@ -1,0 +1,28 @@
+version: 2
+models:
+- name: fantasy_football__draft_rounds_by_manager
+  description: ''
+  tests:
+  - dbt_utils.unique_combination_of_columns:
+      combination_of_columns:
+      - manager_id
+      - round_num
+  columns:
+  - name: manager_id
+    description: ''
+  - name: manager_initials
+    description: ''
+  - name: round_num
+    description: ''
+  - name: rb
+    description: ''
+  - name: wr
+    description: ''
+  - name: te
+    description: ''
+  - name: qb
+    description: ''
+  - name: def
+    description: ''
+  - name: k
+    description: ''

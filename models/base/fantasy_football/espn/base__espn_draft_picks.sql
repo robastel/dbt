@@ -8,8 +8,8 @@ SELECT
     , NULL AS draft_slot_num
     , NULL AS overall_pick_num
     , CONCAT('espn_', CAST(player_id AS STRING)) AS player_id
-    , player_name
-    , CAST(NULL AS STRING) AS player_position
+    , LOWER(player_name) AS player_name
+    , LOWER(position) AS player_position
     , CAST(NULL AS STRING) AS player_team
     , CAST(NULL AS STRING) AS player_years_experience
     , is_keeper
