@@ -21,7 +21,9 @@ WITH picks_without_primary_key AS
             + round_pick_num AS overall_pick_num
         , player_id
         , player_name
-        , player_position
+        , CASE
+            WHEN player_position = 'D/ST' THEN 'DEF' ELSE player_position
+          END AS player_position
         , player_team
         , player_years_experience
         , is_keeper

@@ -10,6 +10,16 @@ models:
     - not_null
   - name: draft_id
     description: ''
+  - name: league_name
+    description: ''
+  - name: season_id
+    description: ''
+  - name: manager_id
+    description: ''
+  - name: manager_initials
+    description: ''
+  - name: year
+    description: ''
   - name: platform
     description: ''
   - name: platform_season_id
