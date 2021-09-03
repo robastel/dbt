@@ -7,6 +7,11 @@ models:
       combination_of_columns:
       - manager_id
       - round_num
+  - constant_groups:
+      group_by_columns:
+        - manager_id
+      constant_columns:
+        - positions_sum
   columns:
   - name: manager_id
     description: ''
@@ -25,4 +30,6 @@ models:
   - name: def
     description: ''
   - name: k
+    description: ''
+  - name: positions_sum
     description: ''

@@ -22,7 +22,7 @@ WITH picks_without_primary_key AS
         , player_id
         , player_name
         , CASE
-            WHEN player_position = 'D/ST' THEN 'DEF' ELSE player_position
+            WHEN player_position = 'd/st' THEN 'def' ELSE player_position
           END AS player_position
         , player_team
         , player_years_experience
