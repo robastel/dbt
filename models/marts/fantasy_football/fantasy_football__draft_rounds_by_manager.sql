@@ -1,13 +1,24 @@
+{% set player_positions = ['rb', 'wr', 'te', 'qb', 'def', 'k'] %}
+
+WITH manager_rounds_with_position_counts AS
+(
+    SELECT
+        manager_id
+        , manager_initials
+        , round_num
+        , {{
+            dbt_utils.pivot(
+                column='player_position',
+                values=player_positions
+            )
+          }}
+    FROM
+        {{ ref('staging__draft_picks') }}
+    {{ dbt_utils.group_by(3) }}
+)
+
 SELECT
-    manager_id
-    , manager_initials
-    , round_num
-    , {{
-        dbt_utils.pivot(
-            column='player_position',
-            values=['rb', 'wr', 'te', 'qb', 'def', 'k']
-        )
-      }}
+    *
+    , {{ player_positions|join(' + ') }} AS positions_sum
 FROM
-    {{ ref('staging__draft_picks') }}
-{{ dbt_utils.group_by(3) }}
+    manager_rounds_with_position_counts
