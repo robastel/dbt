@@ -9,7 +9,7 @@ SELECT
     , es.platform_season_id
     , es.year
     , es.start_week
-    , es.regular_season_weeksq
+    , es.regular_season_weeks
     , es.regular_season_weeks + lps.rounds AS last_completed_week
     , es.has_matchup_against_median
     , es.playoff_team_count
