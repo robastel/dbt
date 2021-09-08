@@ -4,7 +4,15 @@ SELECT
             ['es.platform', 'es.platform_season_id']
         ) 
     }} AS season_id
-    , es.*
+    , es.platform
+    , es.league_name
+    , es.platform_season_id
+    , es.year
+    , es.start_week
+    , es.regular_season_weeksq
+    , es.regular_season_weeks + lps.rounds AS last_completed_week
+    , es.has_matchup_against_median
+    , es.playoff_team_count
     , lps.rounds AS playoff_rounds
     , es.regular_season_weeks + lps.rounds AS total_weeks
 FROM

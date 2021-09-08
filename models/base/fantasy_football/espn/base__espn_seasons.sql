@@ -5,7 +5,7 @@ SELECT
     , year
     , start_week
     , regular_season_weeks 
-    , current_week AS last_completed_week
+    , NULL AS last_completed_week
     , 0 AS has_matchup_against_median
     , playoff_team_count
 FROM

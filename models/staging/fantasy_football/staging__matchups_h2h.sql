@@ -21,6 +21,7 @@ WITH unioned_matchups_h2h AS
         , opp.team_id AS opponent_team_id
         , opp.points AS opponent_points
         , ROUND(m.points - opp.points, 2) AS point_differential
+        , m.is_completed
         , 0 AS is_median_matchup
         , m.is_regular_season_matchup
         , m.is_playoff_matchup
@@ -56,6 +57,7 @@ SELECT
     , CASE WHEN point_differential > 0 THEN 1 ELSE 0 END AS win
     , CASE WHEN point_differential < 0 THEN 1 ELSE 0 END AS loss
     , CASE WHEN point_differential = 0 THEN 1 ELSE 0 END AS tie
+    , is_completed
     , is_median_matchup
     , is_regular_season_matchup
     , is_playoff_matchup

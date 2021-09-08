@@ -38,6 +38,8 @@ models:
     description: ''
   - name: tie
     description: ''
+  - name: is_completed
+    description: ''
   - name: is_median_matchup
     description: ''
   - name: is_regular_season_matchup

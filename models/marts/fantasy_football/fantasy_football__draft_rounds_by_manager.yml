@@ -9,9 +9,9 @@ models:
       - round_num
   - constant_groups:
       group_by_columns:
-        - manager_id
+      - manager_id
       constant_columns:
-        - positions_sum
+      - positions_sum
   columns:
   - name: manager_id
     description: ''

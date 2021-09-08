@@ -28,6 +28,9 @@ WITH matchups_with_key AS
         , m.platform_team_id
         , et.platform_manager_id
         , m.platform_opponent_team_id
+        , CASE
+            WHEN es.last_completed_week >= m.week THEN 1 ELSE 0
+          END AS is_completed
         , es.regular_season_weeks
         , es.playoff_rounds
         , es.total_weeks
@@ -94,6 +97,7 @@ SELECT
     , ml.platform_team_id
     , ml.platform_manager_id
     , ml.platform_opponent_team_id
+    , ml.is_completed
     , CASE 
         WHEN ml.week <= ml.regular_season_weeks 
             THEN 1 ELSE 0 

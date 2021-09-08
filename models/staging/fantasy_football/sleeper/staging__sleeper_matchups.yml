@@ -34,6 +34,8 @@ models:
     description: ''
   - name: platform_opponent_team_id
     description: ''
+  - name: is_completed
+    description: ''
   - name: is_regular_season_matchup
     description: ''
   - name: is_playoff_matchup

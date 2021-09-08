@@ -18,6 +18,7 @@ WITH matchups_with_median AS
             ) 
             , 3
           ) AS opponent_points
+        , h2h.is_completed
         , 1 AS is_median_matchup
         , h2h.is_regular_season_matchup
         , h2h.is_playoff_matchup
@@ -63,6 +64,7 @@ SELECT
     , CASE WHEN point_differential > 0 THEN 1 ELSE 0 END AS win
     , CASE WHEN point_differential < 0 THEN 1 ELSE 0 END AS loss
     , CASE WHEN point_differential = 0 THEN 1 ELSE 0 END AS tie
+    , is_completed
     , is_median_matchup
     , is_regular_season_matchup
     , is_playoff_matchup

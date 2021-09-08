@@ -28,6 +28,9 @@ WITH matchups_with_key AS
         , m.platform_team_id
         , st.platform_manager_id
         , opp.platform_team_id AS platform_opponent_team_id
+        , CASE
+            WHEN ss.last_completed_week >= m.week THEN 1 ELSE 0
+          END AS is_completed
         , ss.regular_season_weeks
         , ss.playoff_rounds
         , ss.total_weeks
@@ -64,6 +67,7 @@ SELECT
     , mwo.platform_team_id
     , mwo.platform_manager_id
     , mwo.platform_opponent_team_id
+    , mwo.is_completed
     , CASE WHEN mwo.week <= mwo.regular_season_weeks THEN 1 ELSE 0 END AS is_regular_season_matchup
     , CASE WHEN mwo.week > mwo.regular_season_weeks THEN 1 ELSE 0 END AS is_playoff_matchup
     , CASE WHEN slp.winner_place = 3 THEN 1 ELSE 0 END AS is_third_place_matchup
