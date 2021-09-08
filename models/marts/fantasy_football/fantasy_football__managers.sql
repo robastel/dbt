@@ -22,6 +22,8 @@ WITH matchup_counts AS
         , SUM(m.is_third_place_matchup * m.win) AS third_place_count
     FROM
         {{ ref('fantasy_football__matchups') }} AS m
+    WHERE
+        m.is_completed = 1
     {{ dbt_utils.group_by(3) }}
 )
 
