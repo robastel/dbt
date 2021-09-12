@@ -52,3 +52,9 @@ models:
     description: ''
   - name: made_playoffs_rate
     description: ''
+  - name: regular_season_first_place_count
+    description: ''
+  - name: regular_season_most_points_count
+    description: ''
+  - name: regular_season_single_week_most_points_count
+    description: ''
