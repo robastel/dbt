@@ -55,6 +55,8 @@ WITH matchup_counts AS
     JOIN
         {{ ref('fantasy_football__matchups') }} AS m
         ON crs.season_id = m.season_id
+    WHERE
+        m.is_regular_season_matchup = 1
     {{ dbt_utils.group_by(2) }}
 )
 
