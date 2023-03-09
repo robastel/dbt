@@ -5,7 +5,7 @@ profile: default
 
 clean-targets:
   - target
-  - dbt_modules
+  - dbt_packages
 
 models:
   robboli_broc:
