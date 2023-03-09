@@ -1,6 +1,6 @@
 SELECT
     {{ 
-        dbt_utils.surrogate_key(
+        dbt_utils.generate_surrogate_key(
             ['es.platform', 'es.platform_season_id']
         ) 
     }} AS season_id

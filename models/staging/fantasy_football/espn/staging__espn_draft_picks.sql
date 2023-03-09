@@ -33,12 +33,12 @@ WITH picks_without_primary_key AS
 
 SELECT
     {{
-        dbt_utils.surrogate_key(
+        dbt_utils.generate_surrogate_key(
             ['platform', 'platform_season_id', 'platform_draft_id', 'overall_pick_num']
         )
     }} AS draft_pick_id
     , {{
-        dbt_utils.surrogate_key(
+        dbt_utils.generate_surrogate_key(
             ['platform', 'platform_season_id', 'platform_draft_id']
         )
       }} AS draft_id
