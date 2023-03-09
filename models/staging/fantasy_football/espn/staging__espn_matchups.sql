@@ -2,7 +2,7 @@ WITH matchups_with_key AS
 (
     SELECT
         {{ 
-            dbt_utils.surrogate_key(
+            dbt_utils.generate_surrogate_key(
                 ['platform', 'platform_season_id', 'platform_team_id', 'week']
             ) 
         }} AS matchup_id
