@@ -1,4 +1,4 @@
-season_id,year,default_cost,first_award,second_award,third_award,regular_season_first_award,regular_season_highest_week_award,tenth_cost,eleventh_cost,twelfth_cost
+season_id,year,default_cost,first_award,second_award,third_award,regular_season_first_award,regular_season_single_week_most_points_award,tenth_cost,eleventh_cost,twelfth_cost
 9a4f3f3f3af72e4f2d8e7f2921b6ec14,2013,-50,400,150,50,0,0,0,0,0
 4113415f29c8ec9f52f03f85bf40f319,2014,-50,400,150,50,0,0,0,0,0
 5f0c012d245d0e4b1821d2f480f09946,2015,-100,800,300,100,0,0,0,0,0

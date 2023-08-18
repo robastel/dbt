@@ -105,17 +105,17 @@ SELECT
     , (
         s.default_cost
         + CASE
-            WHEN s.final_standing = 1 THEN s.first_award
-            WHEN s.final_standing = 2 THEN s.second_award
-            WHEN s.final_standing = 3 THEN s.third_award
+            WHEN t.final_standing = 1 THEN s.first_award
+            WHEN t.final_standing = 2 THEN s.second_award
+            WHEN t.final_standing = 3 THEN s.third_award
         END
         + CASE
-            WHEN s.regular_season_standing = 1 THEN s.regular_season_first_award
-            WHEN s.regular_season_standing = 10 THEN s.tenth_cost
-            WHEN s.regular_season_standing = 11 THEN s.eleventh_cost
-            WHEN s.regular_season_standing = 12 THEN s.twelfth_cost
+            WHEN t.regular_season_standing = 1 THEN s.regular_season_first_award
+            WHEN t.regular_season_standing = 10 THEN s.tenth_cost
+            WHEN t.regular_season_standing = 11 THEN s.eleventh_cost
+            WHEN t.regular_season_standing = 12 THEN s.twelfth_cost
         END
-        + regular_season_highest_week_award
+        + t.is_regular_season_single_week_most_points * s.regular_season_single_week_most_points_award
     ) AS season_rating
 FROM
     teams_with_final_standing AS t
