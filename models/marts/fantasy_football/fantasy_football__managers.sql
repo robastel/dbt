@@ -93,6 +93,15 @@ WITH matchup_counts AS
     {{ dbt_utils.group_by(1) }}
 )
 
+, managers_with_league_rating AS (
+    SELECT
+        manager_id
+        , SUM(season_rating) AS league_rating
+    FROM
+        {{ ref('fantasy_football__teams') }}
+    {{ dbt_utils.group_by(1) }}
+)
+
 SELECT
     c.*
     , ROUND(((1.0 * c.win_count) + (0.5 * c.tie_count)) / c.matchup_count, 3) AS win_rate
@@ -107,3 +116,6 @@ FROM
 LEFT JOIN
     regular_season AS rs
     ON c.manager_id = rs.manager_id
+LEFT JOIN
+    managers_with_league_rating AS m
+    ON c.manager_id = m.manager_id

@@ -1,0 +1,27 @@
+version: 2
+seeds:
+- name: lookup__seasons
+  description: ''
+  columns:
+  - name: season_id
+    description: ''
+  - name: year
+    description: ''
+  - name: default_cost
+    description: ''
+  - name: first_award
+    description: ''
+  - name: second_award
+    description: ''
+  - name: third_award
+    description: ''
+  - name: regular_season_first_award
+    description: ''
+  - name: regular_season_highest_week_award
+    description: ''
+  - name: tenth_cost
+    description: ''
+  - name: eleventh_cost
+    description: ''
+  - name: twelfth_cost
+    description: ''
