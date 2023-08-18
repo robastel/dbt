@@ -111,6 +111,7 @@ SELECT
     , rs.regular_season_first_place_count
     , rs.regular_season_most_points_count
     , rs.regular_season_single_week_most_points_count
+    , m.league_rating
 FROM
     matchup_counts AS c
 LEFT JOIN
